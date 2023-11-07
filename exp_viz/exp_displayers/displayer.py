@@ -1,4 +1,3 @@
-
 class Displayer():
     """Base class for the classes that will display the explanation visualizations using different explanation methods."""
 
