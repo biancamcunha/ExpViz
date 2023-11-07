@@ -1,3 +1,3 @@
-from .exp_displayers import SHAPViz
-from .exp_displayers import LIMEViz
-from .exp_displayers import Displayer
+from .exp_explainers import SHAPViz
+from .exp_explainers import LIMEViz
+from .exp_explainers import Explainer
