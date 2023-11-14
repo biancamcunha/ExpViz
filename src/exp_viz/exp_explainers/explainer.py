@@ -1,4 +1,6 @@
-class Explainer():
+from abc import ABC
+
+class Explainer(ABC):
     """Base class for the classes that will display the explanation visualizations using different explanation methods."""
 
     def _generate_explanation(self, features):

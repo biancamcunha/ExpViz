@@ -1,10 +1,15 @@
+#pylint: disable=arguments-differ
 from pandas import DataFrame
 from lime import lime_tabular
 from sklearn.base import is_classifier
 from .explainer import Explainer
+from ..visualizations import LIMEPlot
 
-class LIMEViz(Explainer):
-    """Class that generates explanation visualizations by using LIME explanation method."""
+class LIMEExplainer(Explainer):
+    """
+    Class that generates explanations for Machine Learning models by using LIME explanation
+    method.
+    """
 
     def __init__(self, model, features, instance_loc) -> None:
         self.__explainer: object = None
@@ -28,9 +33,8 @@ class LIMEViz(Explainer):
                                                num_features=10)
 
     def _generate_explanation_plots(self, explanations: any):
-        plt = explanations.as_pyplot_figure()
-        plt.tight_layout()
-        explanations.show_in_notebook(show_table=True)
+        plot = LIMEPlot()
+        plot.generate_explanation(explanations)
 
     def generate_explanation_visualizations(self):
         """Public method that generates the desired explanations visualizations."""
