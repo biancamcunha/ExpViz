@@ -1,9 +1,10 @@
 from abc import ABC
+from pandas import DataFrame
 
 class Explainer(ABC):
     """Base class for the classes that will display the explanation visualizations using different explanation methods."""
 
-    def _generate_explanation(self, features):
+    def _generate_explanation(self, features: DataFrame):
         raise NotImplementedError
 
     def _generate_explanation_plots(self, explanations, *args, **kwargs):

@@ -39,7 +39,7 @@ class SHAPExplainer(Explainer):
                                                             self.__instance_loc)
             plot.generate_explanation(explanations)
 
-    def _validate_plot_names(self, plot_names):
+    def _validate_plot_names(self, plot_names: list[str]):
         for plot in plot_names:
             if plot not in self.__local_plot_options and plot not in self.__global_plot_options:
                 raise ValueError(f"The given plot name \"{plot}\" is not valid.")
