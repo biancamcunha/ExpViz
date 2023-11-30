@@ -1,5 +1,5 @@
 from abc import ABC
-from pandas import Dataframe
+from pandas import DataFrame
 
 class Explainer(ABC):
     """
