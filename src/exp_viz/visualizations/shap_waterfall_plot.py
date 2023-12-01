@@ -51,8 +51,8 @@ class SHAPWaterfallPlot(Plot):
         self._display_textual_explanation(explanations)
         if self._explanation_type == 'local':
             if is_classifier(self._model):
-                shap.plots.waterfall(explanations[:, :, 1])
+                shap.plots.waterfall(explanations[self._instance_loc, :, 1])
             else:
-                shap.plots.waterfall(explanations[:, :])
+                shap.plots.waterfall(explanations[self._instance_loc, :])
         else:
             raise ValueError('The waterfall plot only supports local explanations.')
