@@ -1,6 +1,6 @@
 from operator import itemgetter
+from .enums import VisualizationsObjectivesEnum
 from . import Plot
-from . import VisualizationsObjectivesEnum
 
 class LIMEPlot(Plot):
     """
