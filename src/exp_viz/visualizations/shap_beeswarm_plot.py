@@ -3,14 +3,14 @@ from pandas import DataFrame
 import shap
 from sklearn.base import is_classifier
 from . import Plot
-from .enums import VisualizationsObjectivesEnum
+from . import VisualizationsObjectivesEnum
 
 class SHAPBeeswarmPlot(Plot):
     """
     Class that generates beeswarm plots for SHAP global explanations and also gives a textual explanation
     to help on the visualization's interpretation.
     """
-    objective: str = "Beeswarm plot explanation"
+    objective: str = VisualizationsObjectivesEnum.SHAP_BEESWARM_PLOT.value
 
     def _display_textual_explanation(self, explanations: any) -> None:
         df_bar_plot = DataFrame()

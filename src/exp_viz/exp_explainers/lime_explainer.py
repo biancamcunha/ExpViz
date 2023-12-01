@@ -12,8 +12,8 @@ class LIMEExplainer(Explainer):
     """
 
     def __init__(self, model, features, instance_loc) -> None:
-        self.__explainer: object = None
         self.__model: object = model
+        self.__explainer: object = None
         self.__features: DataFrame = features
         self.__instance_loc: int = instance_loc
 

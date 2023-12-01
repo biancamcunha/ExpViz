@@ -3,14 +3,14 @@ from pandas import DataFrame
 import shap
 from sklearn.base import is_classifier
 from . import Plot
-from .enums import VisualizationsObjectivesEnum
+from . import VisualizationsObjectivesEnum
 
 class SHAPBarPlot(Plot):
     """
     Class that generates bar plots for SHAP global or local explanations and also gives a textual
     explanation to help on the visualization's interpretation.
     """
-    objective: str = "Bar plot explanation"
+    objective: str = VisualizationsObjectivesEnum.SHAP_BAR_PLOT.value
 
     @staticmethod
     def __get_global_textual_explanation(explanations) -> None:
