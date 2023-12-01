@@ -9,7 +9,7 @@ Explainable AI has been a growing field over the past years and several methods 
 ## Installation
 1. Clone this repository using the command
 ```
-git clone git@github.com:biancamcunha/ProjetoFinalDeProgramacao.git
+git clone git@github.com:biancamcunha/ExpViz.git
 ```
 2. Go to the root directory of the project and use the command
 ```
