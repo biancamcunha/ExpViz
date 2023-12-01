@@ -17,7 +17,7 @@ class LIMEExplainer(Explainer):
         self.__features: DataFrame = features
         self.__instance_loc: int = instance_loc
 
-    def _generate_explanation(self, features: DataFrame):
+    def _generate_explanation(self, features: DataFrame) -> any:
         if is_classifier(self.__model):
             mode = 'classification'
         else:
@@ -32,11 +32,20 @@ class LIMEExplainer(Explainer):
                                                self.__model.predict_proba,
                                                num_features=10)
 
-    def _generate_explanation_plots(self, explanations: any):
+    def _generate_explanation_plots(self, explanations: any) -> None:
         plot = LIMEPlot()
         plot.generate_explanation(explanations)
 
-    def generate_explanation_visualizations(self):
+    def generate_explanation_visualizations(self) -> None:
         """Public method that generates the desired explanations visualizations."""
         explanation = self._generate_explanation(self.__features)
         self._generate_explanation_plots(explanation)
+
+    @classmethod
+    def list_visualization_options(cls) -> None:
+        print("Visualization options:")
+        print(list('lime_plot'))
+
+    @classmethod
+    def get_visualization_objective(cls, plot_name: str) -> None:
+        print(LIMEPlot.objective)

@@ -9,7 +9,7 @@ Explainable AI has been a growing field over the past years and several methods 
 ## Installation
 1. Clone this repository using the command
 ```
-git clone git@github.com:biancamcunha/ProjetoFinalDeProgramacao.git
+git clone git@github.com:biancamcunha/ExpViz.git
 ```
 2. Go to the root directory of the project and use the command
 ```
@@ -22,7 +22,7 @@ python setup.py install
 
 One property of Shapley values is that the Shapley values of all the input features will always sum up to the difference between the expected model output _**E[f(x)]**_ and the actual model output of the prediction being explained _**f(x)**_. That can be easily seen throug one of the visualizations present in the SHAP library, called waterfall plot, that is also available in ExpViz:
 
-![waterfallplot](.\images\waterfall_plot.png)
+![waterfallplot](/images/waterfall_plot.png)
 
 All the visualizations that are available in ExpViz and how they work will be addressed in the Visualizations section.
 
@@ -36,43 +36,79 @@ All the visualizations that are available in ExpViz and how they work will be ad
 In order to illustrate the SHAP visualizations, we will use the [California Housing Dataset](https://scikit-learn.org/stable/datasets/real_world.html#california-housing-dataset). The target variable of this dataset is the median house value for California districts, expressed in hundreds of thousands of dollars.
 
 #### Bar plot
-The SHAP library can generate global and local bar plots. The **global** bar plot shows the mean of the absolute SHAP values for each feature ordered from the feature with the highest mean to the feature with the lowest mean. That is, the plot will visually show the features ordered by how much impact it has on the predictions, displaying the impact's magnitude through the bars. The y-axis has the features in order of impact and the x-axis has the mean of the absolute SHAP values. It is a very usefull visualization to understand which features influence most in the predictions, however it gives no indication if the impact is positive or negative, since the mean is calculated using the absolute SHAP values.
+The SHAP library can generate global and local bar plots. The **global** bar plot shows the mean of the absolute SHAP values for each feature sorted from the feature with the highest mean to the feature with the lowest mean. That is, the plot will visually show the features sorted by how much impact it has on the predictions, displaying the impact's magnitude through the bars. The y-axis has the features in order of impact and the x-axis has the mean of the absolute SHAP values. It is a very usefull visualization to understand which features influence most in the predictions, however it gives no indication if the impact is positive or negative, since the mean is calculated using the absolute SHAP values.
 
-![globalbarplot](.\images\global_bar_plot.png)
+![globalbarplot](/images/global_bar_plot.png)
 
-The **local** bar plot on the other hand shows the SHAP values of the features for a specific prediction, also ordering the features by magnitude of the impact. It explicits not only the magnitude but also the direction of the impact (positive or negative). 
+The **local** bar plot on the other hand shows the SHAP values of the features for a specific prediction, also sorting the features by magnitude of the impact. It explicits not only the magnitude but also the direction of the impact (positive or negative). 
 
-![localbarplot](.\images\local_bar_plot.png)
+![localbarplot](/images/local_bar_plot.png)
 
 #### Waterfall plot
 
 The waterfall plot supports only local explanations. In this plot, the x-axis has the possible values for the target variable, in this case the median house value, instead of the SHAP values. The plot is constructed originating in the expected value of the target variable **E[f(x)]**, which is the mean of the predictions. Starting from the expected value, a bar with the SHAP value of the feature with the least impact is inserted and a new starting point is set for the next feature's bar. If the SHAP value is positive, the bar will grow to the right side of the graph, otherwise it will grow to the left side. After intserting the bars for every feature, the y-axis is complete will all the features, sorted by the impact in the prediction, and the last bar ends in the predicted value. This plot shows how each feature moved the predicted value away from the expected value and made the model get to that prediction.
 
-![waterfallplot](.\images\waterfall_plot.png)
+![waterfallplot](/images/waterfall_plot.png)
 
-#### Summary plot
-The summary plots are visualizations for global explanations. There are different types of summary plots: beeswarm and violin. Both offer the same information and have the same general structure, but have a slightly different layout of the data points. The summary plots, like the global bar plot, show the features ordered by the impact in the model's output. However, they offer more information than the previous visualization. They have the vertical bar on the right side of the plot that display a color range of the feature value from high to low and the distribution of the features' SHAP values is plotted along the x-axis and the dots are colored according to the before mentioned color range. Looking at the examples below, we can see that MedInc is the feature that has the highest impact in the prediction, just like we observed in the bar plot, but we also know that the low values of the feature cause a negative impact on the prediction and high values cause a positive impact. Latitude on the other hand has the inverse effect, i.e., the higher the latitude the more negative is the impact on the output.
+#### Beeswarm
+The beeeswarm plot is a visualization for global explanations. Like the global bar plot, it shows the features sorted by the impact in the model's output. However, it offers more information than the previous visualization. IT has a vertical bar on the right side of the plot that displays a color range of the feature value from high to low. The distribution of the features' SHAP values is plotted along the x-axis and the dots are colored according to the before mentioned color range. Looking at the examples below, we can see that MedInc is the feature that has the highest impact in the prediction, just like we observed in the bar plot, but we also know that the low values of the feature cause a negative impact on the prediction and high values cause a positive impact. Latitude on the other hand has the inverse effect, i.e., the higher the latitude the more negative is the impact on the output.
 
-The beeswarm displays dots for all the observations, therefore it is also possible to understand the distribution of the features' SHAP values.
+![beeswarmplot](/images/beeswarm_plot.png)
 
-The violin plot has a similar representation of the distribution, but it gives a smoother representation, without displaying all the data points, but rather showing an approximation of the points.
-
-##### Beeswarm
-
-![beeswarmplot](.\images\beeswarm_plot.png)
-
-##### Violin
-
-![violinplot](.\images\violin_plot.png)
 
 ### LIME
 
 For the LIME visualization example we use the [Wine Quality Dataset](https://www.kaggle.com/datasets/piyushagni5/white-wine-quality), which has information about wines' characteristics and the target variable is _quality_, that can be of classes good or bad.
 
-The LIME library only has one type of visualization for its explanations. It is divided in three parts. The first one, to the left, shows the target classes of the problem and the probability generated by the model for each of them. The one in the middle shows the most important features, ordenated from most important to least important, showing how much each of them contributed to the final probabilities and for which class they contributed. As explained before, LIME explanations come from more interpretable models that are trained locally around the predicted instance, and the plot in the middle also gives the conditions from the trained model that were activated by the feature value along with their contribution. The third part of the visualization gives the list of features, also ordered by importance, and their values in the predicted instance and also colors each line with the color that represents the class that they contributed to.
+The LIME library only has one type of visualization for its explanations. It is divided in three parts. The first one, to the left, shows the target classes of the problem and the probability generated by the model for each of them. The one in the middle shows the most important features, ordenated from most important to least important, showing how much each of them contributed to the final probabilities and for which class they contributed. As explained before, LIME explanations come from more interpretable models that are trained locally around the predicted instance, and the plot in the middle also gives the conditions from the trained model that were activated by the feature value along with their contribution. The third part of the visualization gives the list of features, also sorted by importance, and their values in the predicted instance and also colors each line with the color that represents the class that they contributed to.
 
-![limeplot](.\images\lime_plot.png)
+![limeplot](/images/lime_plot.png)
 
-## How to use ExpViz
+## Quick start
 
-In this section we will show how to use the ExpViz library to
+In this section we will show how to use the ExpViz library to generate explanations for your models using a desired explanation methods. 
+
+1. Import the library and other libraries you will need to get the data and train the model.
+```
+import exp_viz
+import pandas as pd
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+```
+
+2. Get the data and train the model.
+```
+
+# California Housing Prices
+dataset = fetch_california_housing(as_frame = True)
+X = dataset['data']
+y = dataset['target']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
+
+# Prepares a default instance of the random forest regressor
+model = RandomForestRegressor()
+
+# Fits the model on the data
+model.fit(X_train, y_train)
+```
+
+3. Choose the explainer you want to use, in this case we will use the SHAPExplainer, and instantitate it.
+```
+shap_exp = exp_viz.SHAPExplainer(model, X_test)
+```
+
+4. If you need to know which visualizations are available for each explainer, use the class function _list_visualization_options()_.
+```
+exp_viz.SHAPExplainer.list_visualization_options()
+```
+
+6. If you want to know the objective of each available visualization, use the class function _get_visualization_objective()_ giving the name of the desired plot as parameter.
+```
+exp_viz.SHAPExplainer.get_visualization_objective('waterfall_plot')
+```
+
+7. Use the method _generate_explanation_visualizations()_ method in order to generate and display the visualizations nad textual explanations.
+```
+shap_exp.generate_explanation_visualizations('waterfall_plot', 'global')
+```
