@@ -1,13 +1,13 @@
 from operator import itemgetter
 from . import Plot
-from .enums import VisualizationsObjectivesEnum
+from . import VisualizationsObjectivesEnum
 
 class LIMEPlot(Plot):
     """
     Class that generates visualization for LIME explanations and also gives a textual explanation
     to help on the visualization's interpretation.
     """
-    objective: str = "LIME plot explanation"
+    objective: str = VisualizationsObjectivesEnum.LIME_PLOT.value
 
     def _display_textual_explanation(self, explanations: any) -> None:
         l_lime_features = sorted(explanations.as_list(),key=itemgetter(1))

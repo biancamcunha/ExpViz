@@ -2,14 +2,14 @@ from pandas import DataFrame
 import shap
 from sklearn.base import is_classifier
 from . import Plot
-from .enums import VisualizationsObjectivesEnum
+from . import VisualizationsObjectivesEnum
 
 class SHAPWaterfallPlot(Plot):
     """
     Class that generates waterfall plots for SHAP local explanations and also gives a textual explanation
     to help on the visualization's interpretation.
     """
-    objective: str = "Waterfall plot explanation"
+    objective: str = VisualizationsObjectivesEnum.SHAP_WATERFALL_PLOT.value
 
     def _display_textual_explanation(self, explanations: any) -> None:
         df_bar_plot = DataFrame()
@@ -51,8 +51,8 @@ class SHAPWaterfallPlot(Plot):
         self._display_textual_explanation(explanations)
         if self._explanation_type == 'local':
             if is_classifier(self._model):
-                shap.plots.waterfall(explanations[:, :, 1])
+                shap.plots.waterfall(explanations[self._instance_loc, :, 1])
             else:
-                shap.plots.waterfall(explanations[:, :])
+                shap.plots.waterfall(explanations[self._instance_loc, :])
         else:
             raise ValueError('The waterfall plot only supports local explanations.')
