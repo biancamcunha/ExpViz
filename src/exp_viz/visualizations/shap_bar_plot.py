@@ -2,8 +2,8 @@ import numpy as np
 from pandas import DataFrame
 import shap
 from sklearn.base import is_classifier
+from .enums import VisualizationsObjectivesEnum
 from . import Plot
-from . import VisualizationsObjectivesEnum
 
 class SHAPBarPlot(Plot):
     """
