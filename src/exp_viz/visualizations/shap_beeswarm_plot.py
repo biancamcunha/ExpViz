@@ -2,13 +2,13 @@ import numpy as np
 from pandas import DataFrame
 import shap
 from sklearn.base import is_classifier
+from .enums import VisualizationsObjectivesEnum
 from . import Plot
-from . import VisualizationsObjectivesEnum
 
 class SHAPBeeswarmPlot(Plot):
     """
-    Class that generates beeswarm plots for SHAP global explanations and also gives a textual explanation
-    to help on the visualization's interpretation.
+    Class that generates beeswarm plots for SHAP global explanations and also gives a textual
+    explanation to help on the visualization's interpretation.
     """
     objective: str = VisualizationsObjectivesEnum.SHAP_BEESWARM_PLOT.value
 

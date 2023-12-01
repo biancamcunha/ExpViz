@@ -1,13 +1,13 @@
 from pandas import DataFrame
 import shap
 from sklearn.base import is_classifier
+from .enums import VisualizationsObjectivesEnum
 from . import Plot
-from . import VisualizationsObjectivesEnum
 
 class SHAPWaterfallPlot(Plot):
     """
-    Class that generates waterfall plots for SHAP local explanations and also gives a textual explanation
-    to help on the visualization's interpretation.
+    Class that generates waterfall plots for SHAP local explanations and also gives a textual
+    explanation to help on the visualization's interpretation.
     """
     objective: str = VisualizationsObjectivesEnum.SHAP_WATERFALL_PLOT.value
 
