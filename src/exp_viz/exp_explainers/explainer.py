@@ -3,8 +3,8 @@ from pandas import DataFrame
 
 class Explainer(ABC):
     """
-    Base class for the classes that will display the explanation visualizations using different
-    explanation methods.
+    Base class for the classes that will generate and display the explanation visualizations using
+    different explanation methods.
     """
 
     def _generate_explanation(self, features: DataFrame) -> any:

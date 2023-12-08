@@ -3,7 +3,7 @@ from enum import Enum
 class VisualizationsObjectivesEnum(Enum):
     """Class that stores the explanations of the objectives of each visualization as an Enum."""
 
-    SHAP_BAR_PLOT = '''The global bar plot shows the features used by to train the model in 
+    SHAP_BAR_PLOT = '''The global bar plot shows the features used to train the model in
     the y-axis and their mean absolute SHAP values in the x-axis. The 
     features are sorted by the values represented by the bars, which 
     means that it is sorted by most impactful to least impactful feature. 
